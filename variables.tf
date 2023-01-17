@@ -27,6 +27,15 @@ variable "actions" {
     })
     dependencies = optional(list(any), [])
     deploy       = optional(bool, false)
+    client_secrets = optional(list(object({
+      name   = string
+      client = string
+      output = string
+    })), [])
+    secrets = optional(list(object({
+      name  = string
+      value = string
+    })), [])
   }))
   default     = []
   description = "Actions are secure, tenant-specific, versioned functions written in Node.js that execute at certain points during the Auth0 runtime. Actions are used to customize and extend Auth0's capabilities with custom logic."

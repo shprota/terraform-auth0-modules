@@ -4,6 +4,41 @@
 ## Example
 [Auth0 multi resources create] (https://github.com/dasmeta/terraform-auth0-modules/tree/main/examples)
 
+## Using credentials from clients in actions
+
+If you need the credentials from one of the managed `clients` for one of your `actions` you can refer to them like this:
+
+```
+actions = {
+      "test" = {
+        code   = file("${path.module}/actions-code/test.js")
+        name   = "test"
+        deploy = false
+        client_secrets = [
+          {
+            name   = "CLIENT_ID"
+            client = "Frontend (Test)"
+            output = "client_id"
+          }
+        ]
+      }
+    }
+
+...
+
+clients = {
+  "Frontend (Test)" = {
+    name     = "Frontend (Test)"
+    app_type = "non_interactive"
+  },
+
+...
+```
+
+`name` is the name of the secret which will be created.
+`client` is the name of the client which is already managed by this module.
+`output` is the name of the output field of the client. The value of the secret is read from this output.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -46,7 +81,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_actions"></a> [actions](#input\_actions) | Actions are secure, tenant-specific, versioned functions written in Node.js that execute at certain points during the Auth0 runtime. Actions are used to customize and extend Auth0's capabilities with custom logic. | <pre>list(object({<br>    name    = string<br>    code    = string<br>    runtime = optional(string, "node16")<br>    supported_triggers = optional(any, {<br>      id      = "post-change-password"<br>      version = "v2"<br>    })<br>    dependencies = optional(list(any), [])<br>    deploy       = optional(bool, false)<br>  }))</pre> | `[]` | no |
+| <a name="input_actions"></a> [actions](#input\_actions) | Actions are secure, tenant-specific, versioned functions written in Node.js that execute at certain points during the Auth0 runtime. Actions are used to customize and extend Auth0's capabilities with custom logic. | <pre>list(object({<br>    name    = string<br>    code    = string<br>    runtime = optional(string, "node16")<br>    supported_triggers = optional(any, {<br>      id      = "post-change-password"<br>      version = "v2"<br>    })<br>    dependencies = optional(list(any), [])<br>    deploy       = optional(bool, false)<br>    client_secrets = optional(list(object({<br>      name   = string<br>      client = string<br>      output = string<br>    })), [])<br>    secrets = optional(list(object({<br>      name  = string<br>      value = string<br>    })), [])<br>  }))</pre> | `[]` | no |
 | <a name="input_apis"></a> [apis](#input\_apis) | With this resource, you can set up APIs that can be consumed from your authorized applications. | <pre>list(object({<br>    name                                            = string<br>    scopes                                          = list(any)<br>    identifier                                      = string<br>    enforce_policies                                = optional(bool, true)<br>    signing_alg                                     = optional(string, "RS256")<br>    skip_consent_for_verifiable_first_party_clients = optional(bool, true)<br>    token_lifetime                                  = optional(number, 86400)<br>    token_lifetime_for_web                          = optional(number, 7200)<br>    token_dialect                                   = optional(string, null)<br>  }))</pre> | `[]` | no |
 | <a name="input_client-id"></a> [client-id](#input\_client-id) | Auth0 client id | `string` | n/a | yes |
 | <a name="input_client-secret"></a> [client-secret](#input\_client-secret) | Auth0 client secret | `string` | n/a | yes |

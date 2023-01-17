@@ -9,6 +9,14 @@ resource "auth0_action" "my_action" {
     version = var.supported_triggers.version
   }
 
+  dynamic "secrets" {
+    for_each = var.secrets
+    content {
+      name  = secrets.key
+      value = secrets.value
+    }
+  }
+
   dynamic "dependencies" {
     for_each = var.dependencies
     content {

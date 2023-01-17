@@ -5,6 +5,21 @@ locals {
         code   = file("${path.module}/actions-code/test.js")
         name   = "test"
         deploy = false
+        secrets = [
+          {
+            name  = "foo"
+            value = "bar"
+          }
+        ]
+        # client secrets fetches values from other managed client outputs
+        # The `client` must be an existing managed client in this module
+        client_secrets = [
+          {
+            name   = "CLIENT_ID"
+            client = "Frontend (Test)"
+            output = "client_id"
+          }
+        ]
       }
     }
     roles = {
