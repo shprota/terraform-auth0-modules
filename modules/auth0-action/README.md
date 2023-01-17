@@ -65,6 +65,7 @@ No modules.
 | <a name="input_deploy"></a> [deploy](#input\_deploy) | n/a | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | n/a | `string` | `"Action"` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | n/a | `string` | `"node16"` | no |
+| <a name="input_secrets"></a> [secrets](#input\_secrets) | Some actions may require secrets to run. Secrets can be passed in a key,value format. | `map(string)` | `{}` | no |
 | <a name="input_supported_triggers"></a> [supported\_triggers](#input\_supported\_triggers) | n/a | <pre>object({<br>    id      = string<br>    version = string<br>  })</pre> | <pre>{<br>  "id": "post-login",<br>  "version": "v3"<br>}</pre> | no |
 
 ## Outputs

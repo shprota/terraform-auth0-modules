@@ -28,6 +28,12 @@ variable "supported_triggers" {
   })
 }
 
+variable "secrets" {
+  description = "Some actions may require secrets to run. Secrets can be passed in a key,value format."
+  type        = map(string)
+  default     = {}
+}
+
 variable "dependencies" {
   type = list(object({
     name    = string
