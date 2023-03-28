@@ -99,6 +99,7 @@ variable "apis" {
     token_lifetime                                  = optional(number, 86400)
     token_lifetime_for_web                          = optional(number, 7200)
     token_dialect                                   = optional(string, null)
+    allow_offline_access                            = optional(bool, false)
   }))
 
   default     = []
