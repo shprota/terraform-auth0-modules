@@ -7,6 +7,7 @@ resource "auth0_guardian" "my_guardian" {
   dynamic "webauthn_roaming" {
     for_each = var.webauthn_roaming
     content {
+      enabled           = true
       user_verification = webauthn_roaming.value["user_verification"]
     }
   }
@@ -14,6 +15,7 @@ resource "auth0_guardian" "my_guardian" {
   dynamic "phone" {
     for_each = var.phone
     content {
+      enabled       = true
       provider      = phone.value["provider"]
       message_types = phone.value["message_types"]
 
@@ -27,6 +29,7 @@ resource "auth0_guardian" "my_guardian" {
   dynamic "push" {
     for_each = var.push
     content {
+      enabled = true
       amazon_sns {
         aws_access_key_id                 = push.value["aws_access_key_id"]
         aws_region                        = push.value["aws_region"]
@@ -46,6 +49,7 @@ resource "auth0_guardian" "my_guardian" {
   dynamic "duo" {
     for_each = var.duo
     content {
+      enabled         = true
       integration_key = duo.value["integration_key"]
       secret_key      = duo.value["secret_key"]
       hostname        = duo.value["hostname"]
