@@ -8,6 +8,7 @@ resource "auth0_resource_server" "rs" {
   skip_consent_for_verifiable_first_party_clients = var.skip_consent_for_verifiable_first_party_clients
   enforce_policies                                = var.enforce_policies
   token_dialect                                   = var.token_dialect
+  allow_offline_access                            = var.allow_offline_access
 
   dynamic "scopes" {
     for_each = var.scopes

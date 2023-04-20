@@ -11,4 +11,5 @@ module "auth0_api" {
   token_lifetime                                  = each.value.token_lifetime
   token_lifetime_for_web                          = each.value.token_lifetime_for_web
   token_dialect                                   = each.value.token_dialect
+  allow_offline_access                            = each.value.allow_offline_access
 }

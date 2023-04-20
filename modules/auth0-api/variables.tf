@@ -45,6 +45,13 @@ variable "token_dialect" {
   type        = string
   default     = null
 }
+
+variable "allow_offline_access" {
+  description = "Enable this setting to allow applications to ask for refresh tokens for the API."
+  type        = bool
+  default     = false
+}
+
 variable "scopes" {
   description = "List of permissions (scopes) used by this resource server."
   type = list(object({
