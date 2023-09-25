@@ -92,13 +92,13 @@ provider "auth0" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~>0.40.0 |
+| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~> 1.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~>0.40.0 |
+| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~> 1.0.0 |
 
 ## Modules
 
@@ -108,6 +108,8 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [auth0_branding.my_branding](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/branding) | resource |
+| [auth0_pages.my_pages](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/pages) | resource |
 | [auth0_tenant.my_tenant](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/tenant) | resource |
 
 ## Inputs

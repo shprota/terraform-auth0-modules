@@ -17,7 +17,7 @@ resource "auth0_resource_server_scopes" "my_api_scopes" {
   dynamic "scopes" {
     for_each = var.scopes
     content {
-      name       = scopes.value["value"]
+      name        = scopes.value["value"]
       description = scopes.value["description"]
     }
   }

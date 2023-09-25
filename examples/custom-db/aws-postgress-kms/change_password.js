@@ -3,7 +3,7 @@ function changePassword(email, newPassword, callback) {
     const aws = require('aws-sdk');
 
     const pool = new Pool({
-      connectionString: configuration.conString 
+      connectionString: configuration.conString
     });
 
     async function encrypt(buffer) {
@@ -17,15 +17,15 @@ function changePassword(email, newPassword, callback) {
                     KeyId: configuration.kmsKeyId,
                     Plaintext: buffer// The data to encrypt.
             };
-  
+
             const encryptResult = await kms.encrypt(params).promise();
-  
+
             if (encryptResult && encryptResult.CiphertextBlob) {
                 const encryptedData = encryptResult.CiphertextBlob.toString('base64');
-  
+
                 pool.connect(function (err, client, done) {
                     if (err) return callback(err);
-  
+
                     const query = 'UPDATE users SET password = $1 WHERE email = $2';
                     client.query(query, [encryptedData, email], function (err, result) {
                         done(); // Release the client back to the pool

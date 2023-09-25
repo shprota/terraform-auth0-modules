@@ -2,7 +2,7 @@ function verify(email, callback) {
   const { Pool } = require('pg');
 
   const pool = new Pool({
-    connectionString: configuration.conString 
+    connectionString: configuration.conString
   });
 
   pool.connect(function (err, client, done) {

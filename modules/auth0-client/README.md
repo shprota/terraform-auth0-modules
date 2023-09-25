@@ -101,13 +101,13 @@ provider "auth0" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~>0.40.0 |
+| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~> 1.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~>0.40.0 |
+| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~> 1.0.0 |
 
 ## Modules
 
@@ -118,6 +118,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [auth0_client.my_client](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/client) | resource |
+| [auth0_client.my_client](https://registry.terraform.io/providers/auth0/auth0/latest/docs/data-sources/client) | data source |
 
 ## Inputs
 
@@ -143,7 +144,6 @@ No modules.
 | <a name="input_refresh_token"></a> [refresh\_token](#input\_refresh\_token) | Configuration settings for the refresh tokens issued for this client. | <pre>object({<br>    leeway                       = number<br>    token_lifetime               = number<br>    rotation_type                = string<br>    expiration_type              = string<br>    idle_token_lifetime          = number<br>    infinite_idle_token_lifetime = bool<br>    infinite_token_lifetime      = bool<br>  })</pre> | <pre>{<br>  "expiration_type": "non-expiring",<br>  "idle_token_lifetime": 2592000,<br>  "infinite_idle_token_lifetime": true,<br>  "infinite_token_lifetime": true,<br>  "leeway": 0,<br>  "rotation_type": "non-rotating",<br>  "token_lifetime": 31557600<br>}</pre> | no |
 | <a name="input_sso"></a> [sso](#input\_sso) | Applies only to SSO clients and determines whether Auth0 will handle Single Sign-On (true) or whether the identity provider will (false). | `bool` | `false` | no |
 | <a name="input_sso_disabled"></a> [sso\_disabled](#input\_sso\_disabled) | Indicates whether or not SSO is disabled. | `bool` | `false` | no |
-| <a name="input_token_endpoint_auth_method"></a> [token\_endpoint\_auth\_method](#input\_token\_endpoint\_auth\_method) | Defines the requested authentication method for the token endpoint. | `string` | `"none"` | no |
 | <a name="input_web_origins"></a> [web\_origins](#input\_web\_origins) | URLs that represent valid web origins for use with web message response mode. | `list(string)` | `[]` | no |
 
 ## Outputs
