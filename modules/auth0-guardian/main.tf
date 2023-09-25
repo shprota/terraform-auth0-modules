@@ -30,6 +30,7 @@ resource "auth0_guardian" "my_guardian" {
     for_each = var.push
     content {
       enabled = true
+      provider = "sns"
       amazon_sns {
         aws_access_key_id                 = push.value["aws_access_key_id"]
         aws_region                        = push.value["aws_region"]

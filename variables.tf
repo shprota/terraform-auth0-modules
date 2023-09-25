@@ -137,7 +137,7 @@ variable "tenant" {
     session_lifetime        = optional(number, 168)
     idle_session_lifetime   = optional(number, 72)
     session_cookie          = optional(string, "persistent")
-    universal_login         = optional(list(any), [])
+    universal_login         = optional(any, [])
     flags = optional(any, {
       allow_legacy_delegation_grant_types    = "false"
       allow_legacy_ro_grant_types            = "false"
@@ -196,12 +196,15 @@ variable "prompts" {
 // Auth0 db
 variable "db_connections" {
   type = list(object({
-    name                      = string
-    password_policy           = optional(string, "good")
-    password_history          = optional(any, { enable = true, size = 3 })
-    password_no_personal_info = optional(bool, true)
-    password_dictionary       = optional(any, { enable = true, dictionary = [] })
-    brute_force_protection    = optional(bool, true)
+    name                           = string
+    password_policy                = optional(string, "good")
+    password_history               = optional(any, { enable = true, size = 3 })
+    password_no_personal_info      = optional(bool, true)
+    password_dictionary            = optional(any, { enable = true, dictionary = [] })
+    brute_force_protection         = optional(bool, true)
+    custom_scripts                 = optional(any, {})
+    enabled_database_customization = optional(bool, false)
+    custom_scripts_configuration   = optional(any, {})
   }))
   default     = []
   description = "With Auth0, you can define sources of users, otherwise known as connections, which may include identity providers database authentication methods."

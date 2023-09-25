@@ -9,7 +9,6 @@ module "auth0_client" {
   custom_login_page_on          = each.value.custom_login_page_on
   custom_login_page             = each.value.custom_login_page
   grant_types                   = each.value.grant_types
-  token_endpoint_auth_method    = each.value.token_endpoint_auth_method
   allowed_logout_urls           = each.value.allowed_logout_urls
   allowed_origins               = each.value.allowed_origins
   callbacks                     = each.value.callbacks

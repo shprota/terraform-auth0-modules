@@ -22,11 +22,24 @@ variable "brute_force_protection" {
   default     = true
 }
 
-# variable "enabled_database_customization" {
-#   description = "enabled_database_customization"
-#   type        = bool
-#   default     = false
-# }
+variable "enabled_database_customization" {
+  description = "enabled_database_customization"
+  type        = bool
+  default     = false
+}
+
+variable "custom_scripts" {
+  description = "Custom DB scripts"
+  type        = any
+  default     = {}
+}
+
+variable "custom_scripts_configuration" {
+  description = "A case-sensitive map of key value pairs used as configuration variables for the custom_script"
+  type        = any
+  default     = {}
+}
+
 
 # variable "import_mode" {
 #   description = "Indicates whether you have a legacy user store and want to gradually migrate those users to the Auth0 user store."

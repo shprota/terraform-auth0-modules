@@ -9,11 +9,15 @@ resource "auth0_resource_server" "rs" {
   enforce_policies                                = var.enforce_policies
   token_dialect                                   = var.token_dialect
   allow_offline_access                            = var.allow_offline_access
+}
+
+resource "auth0_resource_server_scopes" "my_api_scopes" {
+  resource_server_identifier = auth0_resource_server.rs.identifier
 
   dynamic "scopes" {
     for_each = var.scopes
     content {
-      value       = scopes.value["value"]
+      name       = scopes.value["value"]
       description = scopes.value["description"]
     }
   }
