@@ -21,7 +21,6 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [auth0_role.role](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/role) | resource |
 | [auth0_user.user](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/user) | resource |
 | [auth0_user_roles.user_roles](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/user_roles) | resource |
 
