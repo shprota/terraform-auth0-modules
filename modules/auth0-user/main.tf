@@ -8,8 +8,6 @@ resource "auth0_user" "user" {
   password        = each.value.password
   email_verified  = true
   nickname        = each.value.name
-  username        = each.value.name
-  given_name      = each.value.name
 }
 
 resource "auth0_user_roles" "user_roles" {
