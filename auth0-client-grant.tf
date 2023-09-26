@@ -3,5 +3,5 @@ resource "auth0_client_grant" "my_client_grant" {
 
   client_id = module.auth0_client[each.value.client_name].client_id
   audience  = each.value.audience
-  scope     = lookup(each.value, "scope", [])
+  scopes    = lookup(each.value, "scope", [])
 }

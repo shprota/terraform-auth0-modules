@@ -21,10 +21,14 @@ resource "auth0_connection" "my-database-connection" {
       dictionary = var.password_dictionary.dictionary
     }
 
+    custom_scripts                 = var.custom_scripts
+    enabled_database_customization = var.enabled_database_customization
+
+    configuration = var.custom_scripts_configuration
+
     #   allowed_audiences              = []
     #   api_enable_users               = false
     #   auth_params                    = {}
-    #   custom_scripts                 = {}
     #   debug                          = false
     #   disable_cache                  = false
     #   disable_sign_out               = false
@@ -41,7 +45,6 @@ resource "auth0_connection" "my-database-connection" {
     #   use_kerberos                   = false
     #   use_wsfed                      = false
     #   waad_common_endpoint           = false
-    #   enabled_database_customization = var.enabled_database_customization
     #   import_mode                    = var.import_mode
     #   requires_username              = var.requires_username
     #   disable_signup                 = var.disable_signup

@@ -1,4 +1,4 @@
-resource "auth0_email" "this" {
+resource "auth0_email_provider" "this" {
   name                 = var.name
   enabled              = var.enable_provider
   default_from_address = var.default_from_address
@@ -12,7 +12,7 @@ resource "auth0_email" "this" {
 }
 
 resource "auth0_email_template" "this" {
-  depends_on = [auth0_email.this]
+  depends_on = [auth0_email_provider.this]
 
   for_each = var.templates
 

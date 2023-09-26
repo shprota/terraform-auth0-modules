@@ -27,13 +27,13 @@ provider "auth0" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~> 0.40.0 |
+| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~> 1.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~> 0.40.0 |
+| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~> 1.0.0 |
 
 ## Modules
 
@@ -50,6 +50,9 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_brute_force_protection"></a> [brute\_force\_protection](#input\_brute\_force\_protection) | Indicates whether to enable brute force protection, which will limit the number of signups and failed logins from a suspicious IP address. | `bool` | `true` | no |
+| <a name="input_custom_scripts"></a> [custom\_scripts](#input\_custom\_scripts) | Custom DB scripts | `any` | `{}` | no |
+| <a name="input_custom_scripts_configuration"></a> [custom\_scripts\_configuration](#input\_custom\_scripts\_configuration) | A case-sensitive map of key value pairs used as configuration variables for the custom\_script | `any` | `{}` | no |
+| <a name="input_enabled_database_customization"></a> [enabled\_database\_customization](#input\_enabled\_database\_customization) | enabled\_database\_customization | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the connection | `string` | `"Example-Connection"` | no |
 | <a name="input_password_dictionary"></a> [password\_dictionary](#input\_password\_dictionary) | Configuration settings for the password dictionary check. | <pre>object({<br>    enable     = bool<br>    dictionary = list(string)<br>  })</pre> | <pre>{<br>  "dictionary": [],<br>  "enable": true<br>}</pre> | no |
 | <a name="input_password_history"></a> [password\_history](#input\_password\_history) | Configuration settings for the password history that is maintained for each user to prevent the reuse of passwords. | <pre>object({<br>    enable = bool<br>    size   = number<br>  })</pre> | <pre>{<br>  "enable": true,<br>  "size": 3<br>}</pre> | no |

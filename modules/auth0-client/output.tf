@@ -15,6 +15,6 @@ output "client_id" {
 }
 
 output "client_secret" {
-  value     = auth0_client.my_client.client_secret
+  value     = data.auth0_client.my_client.client_secret
   sensitive = true
 }

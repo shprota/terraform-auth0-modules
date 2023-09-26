@@ -6,7 +6,6 @@ resource "auth0_client" "my_client" {
   custom_login_page                   = var.custom_login_page
   is_first_party                      = var.is_first_party
   is_token_endpoint_ip_header_trusted = var.is_trusted_endpoint
-  token_endpoint_auth_method          = var.token_endpoint_auth_method
   oidc_conformant                     = var.oidc_conformant
   callbacks                           = var.callbacks
   cross_origin_auth                   = var.cross_origin_auth
@@ -37,4 +36,8 @@ resource "auth0_client" "my_client" {
   sso          = var.sso
   sso_disabled = var.sso_disabled
   logo_uri     = var.logo_uri
+}
+
+data "auth0_client" "my_client" {
+  client_id = auth0_client.my_client.id
 }

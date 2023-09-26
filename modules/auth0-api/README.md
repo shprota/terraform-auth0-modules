@@ -39,13 +39,13 @@ provider "auth0" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~>0.40.0 |
+| <a name="requirement_auth0"></a> [auth0](#requirement\_auth0) | ~> 1.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~>0.40.0 |
+| <a name="provider_auth0"></a> [auth0](#provider\_auth0) | ~> 1.0.0 |
 
 ## Modules
 
@@ -56,11 +56,13 @@ No modules.
 | Name | Type |
 |------|------|
 | [auth0_resource_server.rs](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/resource_server) | resource |
+| [auth0_resource_server_scopes.my_api_scopes](https://registry.terraform.io/providers/auth0/auth0/latest/docs/resources/resource_server_scopes) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_allow_offline_access"></a> [allow\_offline\_access](#input\_allow\_offline\_access) | Enable this setting to allow applications to ask for refresh tokens for the API. | `bool` | `false` | no |
 | <a name="input_enforce_policies"></a> [enforce\_policies](#input\_enforce\_policies) | Indicates whether authorization polices are enforced. | `bool` | `true` | no |
 | <a name="input_identifier"></a> [identifier](#input\_identifier) | Unique identifier for the resource server. | `string` | `"my-resource-server-identifier"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Friendly name for the resource server. | `string` | `"My Resource Server (Managed by Terraform)"` | no |

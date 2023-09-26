@@ -38,13 +38,6 @@ variable "is_trusted_endpoint" {
   default     = false
 }
 
-
-variable "token_endpoint_auth_method" {
-  description = "Defines the requested authentication method for the token endpoint."
-  type        = string
-  default     = "none"
-}
-
 variable "cross_origin_auth" {
   description = "Whether this client can be used to make cross-origin authentication requests (true) or it is not allowed to make such requests (false)."
   type        = bool

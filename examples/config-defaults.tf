@@ -1,5 +1,33 @@
 locals {
   _defaults = {
+    db_connections = [
+      {
+        name                      = "Username-Password-Authentication"
+        password_policy           = "excellent"
+        password_history          = { enable = true, size = 3 }
+        password_no_personal_info = true
+        password_dictionary       = { enable = true, dictionary = [] }
+        brute_force_protection    = true
+        custom_scripts = {
+          get_user        = file("${path.module}/custom-db/aws-postgress-kms/get_user.js")
+          remove          = file("${path.module}/custom-db/aws-postgress-kms/delete_user.js")
+          create          = file("${path.module}/custom-db/aws-postgress-kms/create.js")
+          verify          = file("${path.module}/custom-db/aws-postgress-kms/verify.js")
+          login           = file("${path.module}/custom-db/aws-postgress-kms/login.js")
+          change_password = file("${path.module}/custom-db/aws-postgress-kms/change_password.js")
+        }
+
+        custom_scripts_configuration = {
+          accessKeyId      = ""
+          secretAccessKey  = ""
+          region           = "eu-central-1"
+          kmsKeyId         = ""
+          connectionString = "postgres://username:password@db_connection_url:5432/db_name"
+        }
+        enabled_database_customization = true
+      }
+    ]
+
     actions = {
       "test" = {
         code   = file("${path.module}/actions-code/test.js")
