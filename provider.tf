@@ -6,11 +6,12 @@ terraform {
     }
   }
 
-  required_version = "~> 1.5.6"
+  required_version = ">= 1.5.6"
 }
 
 provider "auth0" {
   domain        = var.domain
   client_id     = var.client-id
   client_secret = var.client-secret
+  debug = true
 }

@@ -58,7 +58,6 @@ variable "clients" {
     custom_login_page             = optional(string, " ")
     token_endpoint_auth_method    = optional(string, "none")
     grant_types                   = optional(list(string), ["client_credentials"])
-    token_endpoint_auth_method    = optional(string, "client_secret_post")
     logo_uri                      = optional(string, null)
     sso                           = optional(bool, false)
     jwt_configuration = optional(any, {

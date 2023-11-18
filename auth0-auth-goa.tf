@@ -6,6 +6,6 @@ module "auth0-goa" {
   source   = "./modules/auth0-auth-google"
   for_each = { for k, v in var.google : k => v }
 
-  name            = each.value.name
+#  name            = each.value.name
   enabled_clients = local.enabled_clients[each.key]
 }
