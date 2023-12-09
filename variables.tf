@@ -204,6 +204,7 @@ variable "db_connections" {
     custom_scripts                 = optional(any, {})
     enabled_database_customization = optional(bool, false)
     custom_scripts_configuration   = optional(any, {})
+    enabled_clients = optional(list(string), [])
   }))
   default     = []
   description = "With Auth0, you can define sources of users, otherwise known as connections, which may include identity providers database authentication methods."

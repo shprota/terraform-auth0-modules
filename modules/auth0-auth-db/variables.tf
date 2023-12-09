@@ -111,11 +111,11 @@ variable "password_dictionary" {
 #   })
 # }
 
-# variable "enabled_clients" {
-#   type        = list(string)
+ variable "enabled_clients" {
+   type        = list(string)
 #   default     = []
-#   description = "IDs of the clients for which the connection is enabled"
-# }
+   description = "IDs of the clients for which the connection is enabled"
+ }
 
 # variable "mfa" {
 #   description = "MFA configuration for module"

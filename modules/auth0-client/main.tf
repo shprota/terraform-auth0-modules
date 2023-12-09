@@ -17,6 +17,8 @@ resource "auth0_client" "my_client" {
   grant_types                         = var.grant_types
   client_metadata                     = var.client_metadata
 
+
+
   jwt_configuration {
     lifetime_in_seconds = var.jwt_configuration.lifetime_in_seconds
     secret_encoded      = var.jwt_configuration.secret_encoded
@@ -36,6 +38,11 @@ resource "auth0_client" "my_client" {
   sso          = var.sso
   sso_disabled = var.sso_disabled
   logo_uri     = var.logo_uri
+}
+
+resource "auth0_client_credentials" "my_credentials" {
+  authentication_method = var.authentication_method
+  client_id             = auth0_client.my_client.id
 }
 
 data "auth0_client" "my_client" {

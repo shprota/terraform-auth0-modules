@@ -151,3 +151,9 @@ variable "sso_disabled" {
   type        = bool
   default     = false
 }
+
+variable "authentication_method" {
+  description = "The method Auth0 will use to authenticate the user."
+  type        = string
+  default     = "none"
+}
