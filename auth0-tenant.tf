@@ -1,6 +1,7 @@
 module "auth0-tenant" {
+  depends_on = [module.auth0_api]
   source   = "./modules/auth0-tenant"
-  for_each = { for v in var.tenant : v.friendly_name => v }
+  for_each = var.tenant
 
   friendly_name           = each.value.friendly_name
   allowed_logout_urls     = each.value.allowed_logout_urls

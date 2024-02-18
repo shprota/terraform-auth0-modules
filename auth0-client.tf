@@ -1,6 +1,6 @@
 module "auth0_client" {
   source   = "./modules/auth0-client"
-  for_each = { for v in var.clients : v.name => v }
+  for_each = var.clients
 
   application_name = each.value.name
 

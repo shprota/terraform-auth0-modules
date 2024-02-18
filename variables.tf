@@ -20,7 +20,7 @@ variable "actions" {
   type = list(object({
     name    = string
     code    = string
-    runtime = optional(string, "node16")
+    runtime = optional(string, "node18")
     supported_triggers = optional(any, {
       id      = "post-change-password"
       version = "v2"
@@ -43,7 +43,7 @@ variable "actions" {
 
 // Client
 variable "clients" {
-  type = list(object({
+  type = map(object({
 
     name                          = string
     app_type                      = string
@@ -76,7 +76,7 @@ variable "clients" {
     })
   }))
 
-  default     = []
+  default     = {}
   description = "With this resource, you can set up applications that use Auth0 for authentication and configure allowed callback URLs and secrets for these applications."
 }
 
@@ -119,7 +119,7 @@ variable "roles" {
 
 // Tenant
 variable "tenant" {
-  type = list(object({
+  type = map(object({
     friendly_name           = string
     allowed_logout_urls     = optional(list(string), [])
     default_audience        = optional(string, null)
@@ -166,7 +166,7 @@ variable "tenant" {
 
 
 
-  default     = []
+  default     = {}
   description = "With this resource, you can manage Auth0 tenants"
 }
 
