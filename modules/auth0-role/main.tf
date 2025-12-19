@@ -12,8 +12,8 @@ resource "auth0_role_permissions" "permissions" {
   dynamic "permissions" {
     for_each = var.permissions
     content {
-      name                       = var.permissions[0].name
-      resource_server_identifier = var.permissions[0].resource_server_identifier
+      name                       = permissions.value.name
+      resource_server_identifier = permissions.value.resource_server_identifier
     }
   }
 }
