@@ -17,26 +17,7 @@ variable "client-secret" {
 // Action
 
 variable "actions" {
-  type = list(object({
-    name    = string
-    code    = string
-    runtime = optional(string, "node18")
-    supported_triggers = optional(any, {
-      id      = "post-change-password"
-      version = "v2"
-    })
-    dependencies = optional(list(any), [])
-    deploy       = optional(bool, false)
-    client_secrets = optional(list(object({
-      name   = string
-      client = string
-      output = string
-    })), [])
-    secrets = optional(list(object({
-      name  = string
-      value = string
-    })), [])
-  }))
+  type        = any
   default     = []
   description = "Actions are secure, tenant-specific, versioned functions written in Node.js that execute at certain points during the Auth0 runtime. Actions are used to customize and extend Auth0's capabilities with custom logic."
 }
@@ -59,6 +40,7 @@ variable "clients" {
     token_endpoint_auth_method    = optional(string, "none")
     grant_types                   = optional(list(string), ["client_credentials"])
     logo_uri                      = optional(string, null)
+    initiate_login_uri            = optional(string, null)
     sso                           = optional(bool, false)
     jwt_configuration = optional(any, {
       alg                 = "RS256"
@@ -217,6 +199,22 @@ variable "google" {
   description = "With Auth0, you can define sources of users, otherwise known as connections, which may include identity provider Google  authentication methods."
 }
 
+// Auth0 Okta SAML
+variable "okta_connections" {
+  type = list(object({
+    name                     = string
+    display_name             = optional(string, null)
+    metadata_url             = string
+    sign_out_endpoint        = optional(string, "")
+    user_id_attribute        = optional(string, "")
+    fields_map               = optional(string, "{}")
+    set_user_root_attributes = optional(string, "on_each_login")
+    enabled_clients          = optional(list(string), [])
+  }))
+  default     = []
+  description = "Okta SAML enterprise connections for SSO authentication."
+}
+
 // Email
 variable "emails" {
   type = list(object({
@@ -242,6 +240,13 @@ variable "users" {
     roles    = list(string)
     password = string
   }))
+}
+
+// Trigger Bindings (action execution order per trigger)
+variable "trigger_bindings" {
+  type = map(list(string))
+  default     = {}
+  description = "Map of trigger ID to ordered list of action names. Controls execution order of actions within each trigger."
 }
 
 // MFA

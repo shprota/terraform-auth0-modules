@@ -98,6 +98,12 @@ variable "client_metadata" {
   default     = {}
 }
 
+variable "initiate_login_uri" {
+  description = "Initiate login URI. Must be HTTPS or an empty string."
+  type        = string
+  default     = null
+}
+
 variable "jwt_configuration" {
   description = "Configuration settings for the JWTs issued for this client."
   type = object({

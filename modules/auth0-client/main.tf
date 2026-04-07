@@ -16,8 +16,7 @@ resource "auth0_client" "my_client" {
   organization_usage                  = var.organization_usage
   grant_types                         = var.grant_types
   client_metadata                     = var.client_metadata
-
-
+  initiate_login_uri                  = var.initiate_login_uri
 
   jwt_configuration {
     lifetime_in_seconds = var.jwt_configuration.lifetime_in_seconds
