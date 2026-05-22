@@ -13,6 +13,16 @@ resource "auth0_connection" "okta_saml" {
     sign_saml_request        = var.sign_saml_request
     set_user_root_attributes = var.set_user_root_attributes
     fields_map               = var.fields_map
+
+    dynamic "idp_initiated" {
+      for_each = var.idp_initiated.enabled ? [var.idp_initiated] : []
+      content {
+        enabled                = true
+        client_id              = idp_initiated.value.client_id
+        client_protocol        = idp_initiated.value.client_protocol
+        client_authorize_query = idp_initiated.value.client_authorize_query
+      }
+    }
   }
 }
 

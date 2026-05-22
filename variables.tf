@@ -210,6 +210,12 @@ variable "okta_connections" {
     fields_map               = optional(string, "{}")
     set_user_root_attributes = optional(string, "on_each_login")
     enabled_clients          = optional(list(string), [])
+    idp_initiated = optional(object({
+      enabled                = bool
+      client                 = optional(string, "")
+      client_protocol        = optional(string, "samlp")
+      client_authorize_query = optional(string, "")
+    }), { enabled = false })
   }))
   default     = []
   description = "Okta SAML enterprise connections for SSO authentication."

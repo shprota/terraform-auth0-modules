@@ -61,3 +61,16 @@ variable "enabled_clients" {
   type        = list(string)
   default     = []
 }
+
+variable "idp_initiated" {
+  description = "IdP-initiated SSO settings. When enabled, Auth0 accepts unsolicited SAML responses from the IdP and starts a session for the given client."
+  type = object({
+    enabled                = bool
+    client_id              = optional(string, "")
+    client_protocol        = optional(string, "samlp")
+    client_authorize_query = optional(string, "")
+  })
+  default = {
+    enabled = false
+  }
+}

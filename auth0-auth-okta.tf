@@ -1,5 +1,18 @@
 locals {
-  okta_enabled_clients = [for clients in var.okta_connections : flatten([for client in clients.enabled_clients : [module.auth0_client[client].client_id]])]
+  okta_enabled_clients = { for k, conn in var.okta_connections : k => [for client in conn.enabled_clients : module.auth0_client[client].client_id] }
+
+  okta_idp_initiated = {
+    for k, conn in var.okta_connections : k => (
+      conn.idp_initiated.enabled
+      ? {
+        enabled                = true
+        client_id              = module.auth0_client[conn.idp_initiated.client].client_id
+        client_protocol        = conn.idp_initiated.client_protocol
+        client_authorize_query = conn.idp_initiated.client_authorize_query
+      }
+      : { enabled = false }
+    )
+  }
 }
 
 module "auth0-auth-okta" {
@@ -14,4 +27,5 @@ module "auth0-auth-okta" {
   fields_map               = each.value.fields_map
   set_user_root_attributes = each.value.set_user_root_attributes
   enabled_clients          = local.okta_enabled_clients[each.key]
+  idp_initiated            = local.okta_idp_initiated[each.key]
 }
